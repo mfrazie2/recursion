@@ -4,20 +4,27 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className){
-//Need storage
-  var nodes = [];
-  //Pass in a node
-  var searchNodes = function(node){
-    //Check if passed in node has className
-    if (node.className === className){
-      nodes.push(node);
+var getElementsByClassName = function(className, node) {
+    //matched nodes storage
+    var nodes = [];
+    node = node || document.body;
+
+    //Compare node classname to className
+    var parts = node.className.split(' ');
+    if (parts.indexOf(className) >= 0) {
+        //If matched, push to nodes array
+        nodes.push(node);
+        console.log(nodes);
     }
-  };
 
-  //Pass in children nodes
-    //Check if passed in children node has classname
+    //Iterate over children nodes
+    for (var i = 0; i < node.children.length; i++) {
+        //Check if passed in children node has classname
+       var results = getElementsByClassName(className, node.children[i]);
+       nodes = nodes.concat(results);
+    }
 
 
+    return nodes;
 
 };
