@@ -14,7 +14,6 @@ var getElementsByClassName = function(className, node) {
     if (parts.indexOf(className) >= 0) {
         //If matched, push to nodes array
         nodes.push(node);
-        console.log(nodes);
     }
 
     //Iterate over children nodes
